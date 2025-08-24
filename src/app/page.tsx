@@ -1,5 +1,6 @@
 "use client";
 
+import { UserTable } from "@/components/UserTable";
 import { db, User } from "@/dexie/db";
 import { useSyncStore } from "@/zustand/sync-store";
 import axios from "axios";
@@ -21,7 +22,11 @@ export default function Home() {
         );
 
         const users: User[] = response.data.results.map(
-          (u: Omit<User, "favorite">) => ({ favorite: false, ...u }),
+          (u: Omit<User, "favorite">) => ({
+            ...u,
+            id: u.login.uuid,
+            favorite: false,
+          }),
         );
 
         await db.users.bulkPut(users);
@@ -36,5 +41,9 @@ export default function Home() {
     getUserData();
   }, [setLoading, setOffline]);
 
-  return <main></main>;
+  return (
+    <main className="p-4">
+      <UserTable />
+    </main>
+  );
 }

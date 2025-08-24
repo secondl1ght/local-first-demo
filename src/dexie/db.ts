@@ -1,6 +1,7 @@
 import Dexie, { type EntityTable } from "dexie";
 
 interface User {
+  id: string;
   favorite: boolean;
   gender: string;
   name: {
@@ -46,10 +47,6 @@ interface User {
   };
   phone: string;
   cell: string;
-  id: {
-    name: string;
-    value: null | string;
-  };
   picture: {
     large: string;
     medium: string;
@@ -67,7 +64,7 @@ const db = new Dexie("UsersDatabase") as Dexie & {
 
 // Schema declaration:
 db.version(1).stores({
-  users: "++id, name.first, name.last, email", // primary key "id" (for the runtime!)
+  users: "id, name.first, name.last, email", // primary key "id" (for the runtime!)
 });
 
 export type { User };
