@@ -10,6 +10,8 @@
     "lint:fix": "eslint --fix && npx prettier . --write"
   },
   "dependencies": {
+    "dexie": "^4.2.0",
+    "dexie-react-hooks": "^4.2.0",
     "next": "15.5.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
