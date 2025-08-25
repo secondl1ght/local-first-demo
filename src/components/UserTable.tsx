@@ -55,5 +55,5 @@ export const UserTable = () => {
   const users =
     useLiveQuery(() => db.users.orderBy("name.last").limit(10).toArray()) || [];
 
-  return <DataTable columns={columns} data={users} />;
+  return <DataTable columns={columns} data={users} loading={loading} />;
 };

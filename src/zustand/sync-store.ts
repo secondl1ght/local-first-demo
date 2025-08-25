@@ -8,7 +8,7 @@ interface SyncState {
 }
 
 export const useSyncStore = create<SyncState>()((set) => ({
-  loading: false,
+  loading: true,
   setLoading: (l) => set(() => ({ loading: l })),
   offline: false,
   setOffline: (o) => set(() => ({ offline: o })),
