@@ -1,5 +1,6 @@
 "use client";
 
+import { OnlineIndicator } from "@/components/OnlineIndicator";
 import { UserTable } from "@/components/UserTable";
 import { db, User } from "@/dexie/db";
 import { useSyncStore } from "@/zustand/sync-store";
@@ -42,5 +43,10 @@ export default function Home() {
     getUserData();
   }, [setLoading, setOffline]);
 
-  return <UserTable />;
+  return (
+    <div className="space-y-2">
+      <OnlineIndicator />
+      <UserTable />
+    </div>
+  );
 }

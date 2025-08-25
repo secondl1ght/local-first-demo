@@ -50,7 +50,6 @@ const columns: ColumnDef<User>[] = [
 
 export const UserTable = () => {
   const loading = useSyncStore((state) => state.loading);
-  const offline = useSyncStore((state) => state.offline);
 
   const users =
     useLiveQuery(() => db.users.orderBy("name.last").limit(10).toArray()) || [];
