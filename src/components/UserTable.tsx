@@ -81,7 +81,7 @@ export const UserTable = () => {
   const loading = useSyncStore((state) => state.loading);
 
   const users =
-    useLiveQuery(() => db.users.orderBy("name.last").limit(10).toArray()) || [];
+    useLiveQuery(() => db.users.orderBy("name.last").toArray()) || [];
 
   return <DataTable columns={columns} data={users} loading={loading} />;
 };
