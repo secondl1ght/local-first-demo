@@ -5,6 +5,7 @@ import { db, User } from "@/dexie/db";
 import { useSyncStore } from "@/zustand/sync-store";
 import axios from "axios";
 import { useEffect } from "react";
+import { toast } from "sonner";
 
 export default function Home() {
   const setLoading = useSyncStore((state) => state.setLoading);
@@ -31,7 +32,7 @@ export default function Home() {
 
         await db.users.bulkPut(users);
       } catch (error) {
-        console.error(error);
+        toast.error(`${error}`);
         setOffline(true);
       } finally {
         setLoading(false);
