@@ -23,13 +23,21 @@ export default function Home() {
           "https://randomuser.me/api/?page=1&results=10",
         );
 
-        const users: User[] = response.data.results.map(
-          (u: Omit<User, "favorite">) => ({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const userIDs = response.data.results.map((u: any) => u.login.uuid);
+        const existingUsers = await db.users.bulkGet(userIDs);
+        const foundUsers = existingUsers.filter((u) => u !== undefined);
+
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const users: User[] = response.data.results.map((u: any) => {
+          const match = foundUsers.find((f) => f.id === u.login.uuid);
+
+          return {
             ...u,
             id: u.login.uuid,
-            favorite: false,
-          }),
-        );
+            favorite: match ? match.favorite : false,
+          };
+        });
 
         await db.users.bulkPut(users);
       } catch (error) {
