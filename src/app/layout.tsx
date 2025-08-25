@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import { LaptopMinimalCheck } from "lucide-react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -66,7 +67,22 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <div className="flex min-h-dvh flex-col p-4">
+          <header className="mb-8">
+            <h1 className="text-center font-mono text-2xl font-semibold">
+              Local-First Demo
+            </h1>
+          </header>
+
+          <main className="flex-1">{children}</main>
+
+          <footer className="mt-8 flex items-center justify-center space-x-2">
+            <p className="font-mono text-sm font-light">Open Source Software</p>
+
+            <LaptopMinimalCheck size={14} />
+          </footer>
+        </div>
+
         <Toaster />
       </body>
     </html>

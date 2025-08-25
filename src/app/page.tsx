@@ -42,9 +42,5 @@ export default function Home() {
     getUserData();
   }, [setLoading, setOffline]);
 
-  return (
-    <main className="p-4">
-      <UserTable />
-    </main>
-  );
+  return <UserTable />;
 }
