@@ -1,8 +1,10 @@
 import Dexie, { type EntityTable } from "dexie";
 
 interface User {
-  id: string;
+  // we define these fields
+  id: string; // copy of login.uuid
   favorite: boolean;
+  // the rest come from the API
   gender: string;
   name: {
     title: string;
